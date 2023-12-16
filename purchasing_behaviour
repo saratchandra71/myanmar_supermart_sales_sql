@@ -1,7 +1,7 @@
 -- PURCHASING BEHAVIOUR OF CUSTOMERS
 # Product category quantities 
 select product_line,
-	     sum(quantity) as quantity
+       sum(quantity) as quantity
 from sales
 group by 1
 order by 2 desc;
@@ -12,7 +12,7 @@ order by 2 desc;
 # Avg unit pricing per product category
 select product_line,
        sum(quantity) as quantity,
-	     round(avg(unit_price)) as avg_price
+       round(avg(unit_price)) as avg_price
 from sales
 group by 1
 order by 3 ;
@@ -24,7 +24,7 @@ order by 3 ;
 
  # Comparison based on ratings,price and quantity
  select product_line,
-	      sum(quantity) as quantity,
+	sum(quantity) as quantity,
         round(avg(unit_price)) as avg_price,
         round(avg(rating),1) as avg_rating
 from sales
@@ -46,7 +46,7 @@ such strategies */
 # Product category profit margins
 select product_line,
        sum(quantity) as total_quantity,
-	     sum(total) as revenue_total,
+       sum(total) as revenue_total,
        sum(cogs) as cogs_total,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
 from sales
