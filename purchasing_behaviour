@@ -1,0 +1,56 @@
+-- PURCHASING BEHAVIOUR OF CUSTOMERS
+# Product category quantities 
+select product_line,
+	     sum(quantity) as quantity
+from sales
+group by 1
+order by 2 desc;
+/* Compared with sales by orders, we can see that per order the categories of sports are seeing
+   more quantity of items being bought compared to fashion category 
+   Why is this? Can this be due to the pricing of the items? Nature of items? */
+
+# Avg unit pricing per product category
+select product_line,
+       sum(quantity) as quantity,
+	     round(avg(unit_price)) as avg_price
+from sales
+group by 1
+order by 3 ;
+/* The pricing vs quantity comparison shows that price is not the only deciding factor for customers
+ when they buy the items. It could come down to the fact of necessity. Products belonging to the
+ categories of Fashion, Sports,health,home can be seen as non-essential. Food and beverages are 
+ essential in nature and are the second highest. Electronic accessories are non-essential in nature
+ but due to the low pricing are bought in more quantity by the customers. What about quality?*/
+
+ # Comparison based on ratings,price and quantity
+ select product_line,
+	      sum(quantity) as quantity,
+        round(avg(unit_price)) as avg_price,
+        round(avg(rating),1) as avg_rating
+from sales
+group by 1
+order by 2,4;
+/* Assuming rating is indicative of product quality, we can see that health and fashion rated at 7
+are the least bought items.Customers value the items they buy in this category as indicated by the 
+rating,but are conscious of the essentiality of the product. Food&Beverages are highly rated and 
+electronic accessories are not the highest rated items though bought the most.Customers are price-
+sensitive in this particular category and the lower pricing is affecting their purchase
+behaviour */
+/* 1. Product categories of Health&beauty, Fashion accessories are rated high but are bought in lower
+quantities indicating their non-essential nature. If the stores are to run any offers then, products
+belonging to these categories will likely see more traction amongst customers. A small-scale testing
+can be implemented in one store to see the effects.
+   2. It is advisable to also watch out for competitor pricing and market context before attempting any 
+such strategies */
+
+# Product category profit margins
+select product_line,
+       sum(quantity) as total_quantity,
+	     sum(total) as revenue_total,
+       sum(cogs) as cogs_total,
+       round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
+from sales
+group by 1
+order by 5 desc;
+/* Fashion accessories are seeing the highest per unit profit amongst all categories */
+
