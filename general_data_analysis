@@ -1,7 +1,7 @@
 # Sales count by branch
 select Branch,
-	   count('Invoice ID') as sales_count,
-     round(count('Invoice ID')/(select count(*) from sales)*100,2) as pct_sales
+       count('Invoice ID') as sales_count,
+       round(count('Invoice ID')/(select count(*) from sales)*100,2) as pct_sales
 from sales
 group by 1
 order by 1;
@@ -9,8 +9,8 @@ order by 1;
 
 # Sales by customer category
 select  customer_category,
-	    count('invoice id') as sales_count,
-      round(count('invoice id')/(select count(*) from sales)*100,2) as pct_of_sales
+        count('invoice id') as sales_count,
+        round(count('invoice id')/(select count(*) from sales)*100,2) as pct_of_sales
 from sales
 group by 1
 order by 2;
@@ -18,8 +18,8 @@ order by 2;
 
 # Sales by product category
 select Product_line,
-	   count('invoice id') as sales_count,
-     round(count('invoice id')/(select count(*) from sales)*100,2) as pct_sales
+       count('invoice id') as sales_count,
+       round(count('invoice id')/(select count(*) from sales)*100,2) as pct_sales
 from sales
 group by 1
 order by 3 desc;
@@ -27,8 +27,8 @@ order by 3 desc;
 
 # sales by payment
 select payment,
-	   count('Invoice ID') as sales_count,
-     round(count('Invoice ID')/(select count(*) from sales)*100,2) as pct_sales
+       count('Invoice ID') as sales_count,
+       round(count('Invoice ID')/(select count(*) from sales)*100,2) as pct_sales
 from sales
 group by 1
 order by 2,3;
@@ -37,7 +37,7 @@ order by 2,3;
 # Product category profit margins
 select product_line,
        sum(quantity) as total_quantity,
-	     sum(total) as revenue_total,
+       sum(total) as revenue_total,
        sum(cogs) as cogs_total,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
 from sales
