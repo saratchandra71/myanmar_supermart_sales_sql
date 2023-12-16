@@ -1,5 +1,5 @@
 select product_line,
-	     sum(quantity) as quantity,
+       sum(quantity) as quantity,
        round(avg(unit_price)) as avg_price,
        round(avg(rating),1) as avg_rating
 from sales
@@ -9,7 +9,7 @@ order by 2,4;
 
 select product_line,
        sum(quantity) as total_quantity,
-	     sum(total) as revenue_total,
+       sum(total) as revenue_total,
        sum(cogs) as cogs_total,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
 from sales
@@ -24,7 +24,7 @@ us see how female members are purchasing */
 
 # Purchasing behaviour of female member customers
 select product_line,
-	     sum(quantity) as quantity,
+       sum(quantity) as quantity,
        round(avg(unit_price)) as avg_price,
        round(avg(rating),1) as avg_rating,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
@@ -44,7 +44,7 @@ The store should investigate this and try to increase sales of the category */
 
 # Purchasing behaviour of male member customers
 select product_line,
-	     sum(quantity) as quantity,
+       sum(quantity) as quantity,
        round(avg(unit_price)) as avg_price,
        round(avg(rating),1) as avg_rating,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
