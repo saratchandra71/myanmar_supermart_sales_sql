@@ -1,6 +1,6 @@
 -- NORMAL VS MEMBER CUSTOMER CATEGORY ANALYSIS
 select product_line,
-	     round(avg(case when customer_category='normal' then unit_price end)) as price_normal,
+       round(avg(case when customer_category='normal' then unit_price end)) as price_normal,
        round(avg(case when customer_category='member' then unit_price end)) as price_member,
        sum(case when customer_category='normal' then quantity end) as quantity_normal,
        sum(case when customer_category='member' then quantity end) as quantity_member
@@ -12,7 +12,7 @@ categories(electronics,F&B,Health&Beauty). The total quantities bought by both t
 do not differ by much either*/
 
 select product_line,
-	     round(avg(case when customer_category='normal'  then rating end),2) as rating_normal,
+       round(avg(case when customer_category='normal'  then rating end),2) as rating_normal,
        round(avg(case when customer_category='member'  then rating end),2) as rating_member
 from sales
 group by 1 
