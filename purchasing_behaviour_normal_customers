@@ -1,5 +1,5 @@
 select product_line,
-	     sum(quantity) as quantity,
+       sum(quantity) as quantity,
        round(avg(unit_price)) as avg_price,
        round(avg(rating),1) as avg_rating,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
@@ -9,7 +9,7 @@ group by 1
 order by 2,4;
 
 select product_line,
-	     sum(quantity) as quantity,
+       sum(quantity) as quantity,
        round(avg(unit_price)) as avg_price,
        round(avg(rating),1) as avg_rating,
        round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
