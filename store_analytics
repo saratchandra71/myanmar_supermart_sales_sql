@@ -1,0 +1,43 @@
+# Analysis by revenue
+select branch,
+       round(sum(total)) as total_revenue,
+       round(sum(total)/(select sum(total) from sales)*100,2) as pct_share
+from sales
+group by 1;
+/* Store C has a higher revenue share but the difference is only 2 percentage higher over the other
+   stores */
+
+# Customer category analysis by store
+select branch,
+	   round(sum(case when customer_category='member' then total end)) as member_revenue,
+       round(sum(case when customer_category='normal' then total end)) as normal_revenue
+from sales
+group by 1;
+/* There is no major variation in revenue across the stores */
+
+#Analysis by product line
+select branch,
+	     product_line,
+       round(sum(total)) as product_revenue
+from sales
+group by 1,2
+order by 2;
+/* There is no discernable pattern between the stores.In some product lines, some stores lead
+   while others lag and vice-versa.These differences can be due to the buyer preferences or 
+   individual store promotions*/
+
+# Analysis by ratings
+select branch,
+	     round(avg(rating),1) as ratings
+from sales
+group by 1;
+
+select branch,
+       round(avg(case when customer_category='member' then rating end),1) as member_rating,
+       round(avg(case when customer_category='normal' then rating end),1) as normal_rating
+from sales
+group by 1
+/* It appears that store B has an overall lower rating compared to the other two stores.This is 
+   considering the overall rating as well customer category rating.Rating can be affected by both
+   product purchases as well as customer service.It will be worthwhile to investigate the reasons
+   for the lower rating*/
