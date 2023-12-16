@@ -1,0 +1,58 @@
+select product_line,
+	     sum(quantity) as quantity,
+       round(avg(unit_price)) as avg_price,
+       round(avg(rating),1) as avg_rating
+from sales
+where customer_category='member'
+group by 1
+order by 2,4;
+
+select product_line,
+       sum(quantity) as total_quantity,
+	     sum(total) as revenue_total,
+       sum(cogs) as cogs_total,
+       round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
+from sales
+where customer_category='member'
+group by 1
+order by 5 desc;
+/* Health and beauty are highly rated as well as yielding a high per unit profit surpassed only
+by F&B. Yet,they are bought the least. It will be worthwhile to see how the sales can be increased
+further in this category. It will be beneficial to check why customers rate this category high and 
+what they consider is the pull factor for them and design a campaign accordingly to boost sales.Let 
+us see how female members are purchasing */
+
+# Purchasing behaviour of female member customers
+select product_line,
+	     sum(quantity) as quantity,
+       round(avg(unit_price)) as avg_price,
+       round(avg(rating),1) as avg_rating,
+       round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
+from sales
+where customer_category='member' and gender='female'
+group by 1
+order by 2,4;
+/* Female members are buying more products in the categories of F&B, Home and sports. A curious case
+here is the fact that the health and beauty segment despite having the highest rating and lowest 
+avg price still sees the lowest amount bought. This is despite the category being synonymous with female
+members. There can be a number of reasons like 
+1.The offerings are limited compared to other stores
+2.Lack of awareness of the products within the product line
+3.Myriad other factors like store placement, perception of low pricing etc.
+4.Predominant stocking of male beauty products over female products
+The store should investigate this and try to increase sales of the category */
+
+# Purchasing behaviour of male member customers
+select product_line,
+	     sum(quantity) as quantity,
+       round(avg(unit_price)) as avg_price,
+       round(avg(rating),1) as avg_rating,
+       round((sum(total)-sum(cogs))/sum(quantity),2) as per_unit_profit
+from sales
+where customer_category='member' and gender='male'
+group by 1
+order by 2,4;
+/* Male members are buying Health &Beauty, Electronic accessories, F&B.It is possible that the stores
+are stocking male beauty products to a larger extent than female beauty products.This possibly 
+explains the health/beauty category being the most bought category amongst male members than female mebers.
+The stores should also explore increasing their sales of health/beauty products amongst the female members*/
