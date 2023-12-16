@@ -9,7 +9,7 @@ group by 1;
 
 # Customer category analysis by store
 select branch,
-	   round(sum(case when customer_category='member' then total end)) as member_revenue,
+       round(sum(case when customer_category='member' then total end)) as member_revenue,
        round(sum(case when customer_category='normal' then total end)) as normal_revenue
 from sales
 group by 1;
@@ -17,7 +17,7 @@ group by 1;
 
 #Analysis by product line
 select branch,
-	     product_line,
+       product_line,
        round(sum(total)) as product_revenue
 from sales
 group by 1,2
@@ -28,7 +28,7 @@ order by 2;
 
 # Analysis by ratings
 select branch,
-	     round(avg(rating),1) as ratings
+       round(avg(rating),1) as ratings
 from sales
 group by 1;
 
